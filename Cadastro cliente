@@ -1,0 +1,30 @@
+<?php
+session_start();
+include_once("conexao4.php");
+
+//cadastro
+$Nome = filter_input(INPUT_POST, 'Nome', FILTER_SANITIZE_STRING);
+$CPF = filter_input(INPUT_POST, 'CPF', FILTER_SANITIZE_EMAIL);
+$Data = filter_input(INPUT_POST, 'Data', FILTER_SANITIZE_STRING);
+$Operacao = filter_input(INPUT_POST, 'Operacao', FILTER_SANITIZE_STRING);
+$PMT = filter_input(INPUT_POST, 'PMT', FILTER_SANITIZE_STRING);
+$CTT = filter_input(INPUT_POST, 'CTT', FILTER_SANITIZE_STRING);
+$Promotora = filter_input(INPUT_POST, 'Promotora', FILTER_SANITIZE_STRING);
+
+
+$result_usuario = "INSERT INTO Cadastro (Nome, CPF, Data, Operacao, PMT, CTT, Promotora) VALUES ('$Nome', '$CPF', '$Data', '$Operacao', '$PMT', '$CTT', '$Promotora')";
+$resultado_usuario = mysqli_query($conn, $result_usuario);
+
+
+
+
+// Inserir no Banco de Dados
+$in = mysqli_query("insert into Cadastro (Nome, CPF, Data, Operacao, PMT, CTT, Promotora) VALUES ('$Nome', '$CPF', '$Data', '$Operacao', '$PMT', '$CTT', '$Promotora')" or die("Erro");
+
+if($in)
+    {
+        echo 'Cadastro Efeturado';
+
+
+    }
+?>
